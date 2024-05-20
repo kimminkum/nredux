@@ -1,0 +1,27 @@
+{
+  "name": "redux_pj",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "live-server public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kimminkum/nredux.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kimminkum/nredux/issues"
+  },
+  "homepage": "https://github.com/kimminkum/nredux#readme",
+  "dependencies": {
+    "redux": "^5.0.1"
+  },
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  }
+}
