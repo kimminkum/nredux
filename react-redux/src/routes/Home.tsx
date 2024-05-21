@@ -28,11 +28,16 @@ const Home: React.FC = () => {
     const onChange = (e: ChangeEvent<HTMLInputElement>) => {
         setText(e.target.value);
     }
+    const onSubmit = (e: ChangeEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        console.log(text);
+        setText("");
+    }
 
     return (
         <div>
             <TitleH1>To Do</TitleH1>
-            <Form>
+            <Form onSubmit={onSubmit}>
                 <InputText type="text" value={text} onChange={onChange} />
                 <Btn>Add</Btn>
             </Form>
