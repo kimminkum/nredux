@@ -10,25 +10,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const input = document.querySelector('input');
     const ul = document.querySelector('ul');
     number.innerText = 0;
-    
-    const store = configureStore({
-        reducer: rootReducer,
-    });
-
 
     const onChange = () => {
         number.innerText = store.getState().counter.count;
     };
 
     const addTodo = text => {
-        if(text) {
-            const newTodo = {
-                id: Date.now(),
-                text: text,
-                completed: false,
-            }
-            store.dispatch(addAction(newTodo));
-        }
+        store.dispatch(addAction({text}));
+    }
+
+    const deleteTodo = e => {
+        console.log(e.target.parentNode.id);
+        const todoId = e.target.parentNode.id;
+        store.dispatch(deleteAction({ id: parseInt(todoId)}));
     }
     
     const onSubmit = e => {
@@ -42,21 +36,31 @@ document.addEventListener('DOMContentLoaded', () => {
         const state = store.getState();
         const todos = state.todo.todo_list;
         ul.innerHTML = '';
+        
         todos.forEach(todo => {
             const li = document.createElement('li');
+            const btn = document.createElement('button');
+            const span = document.createElement('span');
+            btn.innerText = "DEL"
+            span.classList.add('todo-span');
+            btn.classList.add('btn');
+            btn.addEventListener("click", deleteTodo);
             li.id = todo.id;
-            li.innerText = todo.text;
+            span.innerText = todo.text;
             ul.appendChild(li);
+            li.appendChild(span);
+            li.appendChild(btn);
         })
-        
     }
+    
+    const store = configureStore({
+        reducer: rootReducer,
+    });
     
     store.subscribe(paintTodo);
     store.subscribe(onChange);
 
     form.addEventListener("submit", onSubmit);
-    
-
     const handleAdd = () => {
         store.dispatch(incrementAction());
     };

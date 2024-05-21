@@ -5,7 +5,12 @@ const todoSlice = createSlice({
     initialState: { todo_list: [] },
     reducers: {
         add: (state, action) => {
-            state.todo_list = [...state.todo_list, action.payload];
+            const newTodo = {
+                id: Date.now(),
+                text: action.payload.text,
+                completed: false,
+            }
+            state.todo_list = [newTodo, ...state.todo_list];
         },
         delete: (state, action) => {
             state.todo_list = state.todo_list.filter(
