@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useState } from "react";
-import { styled} from "styled-components";
+import { styled } from "styled-components";
 
 const TitleH1 = styled.h1`
     text-align: center;

@@ -1,0 +1,61 @@
+사진 1개로 슬라이드 느낌내기.
+
+<div class="ctns">
+    <div class="fix">
+      <div class="plan-swiper-cs plan-swiper-02 plan-swiper--full">
+        <div class="swiper-container">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <img src="//img.lfmall.co.kr/file/WAS/display/Planning/91919/91919_m_s_02_v2.jpg" alt="" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+$(function () {
+    var sw = planSwipers('.plan-91919', {
+      options: {
+        isResize: false, // 모바일에서 true 로 셋팅하면 plan-vw-resize 클래스를 갖는 이미지에 vw 값을 지정함.
+        isLocal: true, // items.area 를 기준으로 페이징 등 요소를 찾도록 함.( default : false )
+      },
+      items: [
+        {
+          area: '.plan-swiper-main',
+          options: {
+            preloadImages: true,
+            lazy: false,
+            speed: 1200,
+            effect: 'fade',
+            allowTouchMove: false,
+          },
+        },
+        {
+          area: '.plan-swiper-01',
+          options: {
+            preloadImages: true,
+            lazy: false,
+            speed: 1200,
+            autoplay: false,
+            loop: false,
+            freeMode: true,
+            speed: 1000,
+            slidesPerView: 0.52
+          },
+        },
+        {
+          area: '.plan-swiper-02',
+          options: {
+            preloadImages: true,
+            lazy: false,
+            speed: 1200,
+            autoplay: false,
+            loop: false,
+            freeMode: true,
+            speed: 1000,
+            slidesPerView: 0.52
+          },
+        },
+      ],
+    });
