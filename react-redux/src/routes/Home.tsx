@@ -1,14 +1,9 @@
 import React, { ChangeEvent, useState } from "react";
 import { styled } from "styled-components";
-import { useDispatch, useSelector} from "react-redux";
-import {RootState, deleteAction, addAction} from "../store";
-
-
-interface Todo {
-    id: number;
-    text: string;
-}
-
+import { connect} from "react-redux";
+import { Dispatch } from "redux";
+import {RootState} from "../store";
+import { addAction, deleteAction, Todo} from '../reducers/todoReducer';
 
 const TitleH1 = styled.h1`
     text-align: center;
@@ -32,10 +27,14 @@ const Btn = styled.button`
     padding: 0 20px;
 `;
 
-const Home: React.FC = () => {
+type Props = {
+    todos: Todo[];
+    addTodo: (text: string) => void;
+    deleteTodo: (id: number) => void;
+}
+
+const Home: React.FC<Props> = ({todos, addTodo, deleteTodo}) => {
     const [text, setText] = useState<string>("");
-    const dispatch = useDispatch();
-    const todos = useSelector((state: RootState) => state.todo.todo_list);
     
     const onChange = (e: ChangeEvent<HTMLInputElement>) => {
         setText(e.target.value);
@@ -44,13 +43,13 @@ const Home: React.FC = () => {
     const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (text.trim()) {
-            dispatch(addAction({text}));
+            addTodo(text.trim());
             setText("");
         }
     };
 
     const handleDelete = (id: number) => {
-        dispatch(deleteAction({ id }));
+        deleteTodo(id);
     };
 
     return (
@@ -72,57 +71,17 @@ const Home: React.FC = () => {
     );
 }
 
-export default Home;
-
-/**
-const form = document.querySelector('form');
-const input = document.querySelector('input');
-const ul = document.querySelector('ul');
-
-const AddTodo = (text: string) => {
-    store.dispatch(addAction({text}));
-}
-const paintTodo = () => {
-    const state: RootState = store.getState();
-    const todos = state.todo.todo_list;
-
-    if(ul) {ul.innerHTML = '';}
-
-    todos.forEach((todo) => {
-        const li = document.createElement('li');
-        const btn = document.createElement('button');
-        const span = document.createElement('span');
-        btn.innerText = 'X';
-        span.classList.add('todo-txt');
-        btn.classList.add('btn');
-        li.id = todo.id.toString();
-        span.innerText = todo.text;
-
-        btn.addEventListener('click', () => {
-            store.dispatch(deleteAction({ id: todo.id }));
-        });
-
-        ul?.appendChild(li);
-        li?.appendChild(span);
-        li?.appendChild(btn);
-    });
-};
-
-const onSubmit = (e: Event) => {
-    e.preventDefault();
-    if(input) {
-        const todo = input.value.trim();
-        if(todo) {
-            input.value = '';
-            AddTodo(todo);
-        }
+function getCurrentState(state: RootState) {
+    return {
+        todos: state.todo,
     }
-};
-
-store.subscribe(paintTodo);
-
-
-if(form) {
-    form.addEventListener('submit', onSubmit);
 }
- */
+
+function mapDispatchToProps(dispatch: Dispatch) {
+    return {
+        addTodo: (text: string) => dispatch(addAction({text})),
+        deleteTodo: (id:number) => dispatch(deleteAction({id})),
+    };
+}
+
+export default connect(getCurrentState, mapDispatchToProps)(Home);
