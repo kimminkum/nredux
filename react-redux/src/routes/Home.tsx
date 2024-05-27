@@ -4,6 +4,7 @@ import { connect} from "react-redux";
 import { Dispatch } from "redux";
 import { RootState } from "../store";
 import { addAction, deleteAction, Todo} from '../reducers/todoReducer';
+import TodoItem from "../components/TodoItem";
 
 const TitleH1 = styled.h1`
     text-align: center;
@@ -48,10 +49,6 @@ const Home: React.FC<Props> = ({todos, addTodo, deleteTodo}) => {
         }
     };
 
-    const handleDelete = (id: number) => {
-        deleteTodo(id);
-    };
-
     return (
         <div>
             <TitleH1>To Do</TitleH1>
@@ -61,10 +58,7 @@ const Home: React.FC<Props> = ({todos, addTodo, deleteTodo}) => {
             </Form>
             <ul>
                 {todos.map((todo) => (
-                    <li key={todo.id}>
-                        <span>{todo.text}</span>
-                        <button onClick={() => handleDelete(todo.id)}>X</button>
-                    </li>
+                    <TodoItem key={todo.id} todo={todo} deleteTodo={deleteTodo} />
                 ))}
             </ul>
         </div>
