@@ -1,9 +1,9 @@
 import React, { ChangeEvent, useState } from "react";
 import { styled } from "styled-components";
-import { connect} from "react-redux";
+import { connect } from "react-redux";
 import { Dispatch } from "redux";
 import { RootState } from "../store";
-import { addAction, deleteAction, Todo} from '../reducers/todoReducer';
+import { addAction, Todo } from '../reducers/todoReducer';
 import TodoItem from "../components/TodoItem";
 
 const TitleH1 = styled.h1`
@@ -31,12 +31,11 @@ const Btn = styled.button`
 type Props = {
     todos: Todo[];
     addTodo: (text: string) => void;
-    deleteTodo: (id: number) => void;
-}
+};
 
-const Home: React.FC<Props> = ({todos, addTodo, deleteTodo}) => {
+const Home: React.FC<Props> = ({ todos, addTodo }) => {
     const [text, setText] = useState<string>("");
-    
+
     const onChange = (e: ChangeEvent<HTMLInputElement>) => {
         setText(e.target.value);
     };
@@ -58,23 +57,22 @@ const Home: React.FC<Props> = ({todos, addTodo, deleteTodo}) => {
             </Form>
             <ul>
                 {todos.map((todo) => (
-                    <TodoItem key={todo.id} todo={todo} deleteTodo={deleteTodo} />
+                    <TodoItem key={todo.id} todo={todo} />
                 ))}
             </ul>
         </div>
     );
 }
 
-function mapStateToProps(state: RootState) {
+const mapStateToProps = (state: RootState) => {
     return {
         todos: state.todo,
-    }
+    };
 }
 
-function mapDispatchToProps(dispatch: Dispatch) {
+const mapDispatchToProps = (dispatch: Dispatch) => {
     return {
-        addTodo: (text: string) => dispatch(addAction({text})),
-        deleteTodo: (id:number) => dispatch(deleteAction({id})),
+        addTodo: (text: string) => dispatch(addAction({ text })),
     };
 }
 
