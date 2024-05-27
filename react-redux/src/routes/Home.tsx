@@ -2,7 +2,7 @@ import React, { ChangeEvent, useState } from "react";
 import { styled } from "styled-components";
 import { connect} from "react-redux";
 import { Dispatch } from "redux";
-import {RootState} from "../store";
+import { RootState } from "../store";
 import { addAction, deleteAction, Todo} from '../reducers/todoReducer';
 
 const TitleH1 = styled.h1`
@@ -71,7 +71,7 @@ const Home: React.FC<Props> = ({todos, addTodo, deleteTodo}) => {
     );
 }
 
-function getCurrentState(state: RootState) {
+function mapStateToProps(state: RootState) {
     return {
         todos: state.todo,
     }
@@ -84,4 +84,4 @@ function mapDispatchToProps(dispatch: Dispatch) {
     };
 }
 
-export default connect(getCurrentState, mapDispatchToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
