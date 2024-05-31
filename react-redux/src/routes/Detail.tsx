@@ -1,15 +1,25 @@
 import React from "react";
-import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { RootState } from "../store";
+import { Todo } from "../reducers/todoReducer";
 
 const Detail: React.FC = () => {
-  const { id } = useParams<{ id: string }>(); // useParams 훅을 사용하여 URL에서 id 추출
-  console.log(id); // id 값 확인
+  const { id } = useParams<{ id: string }>();
+  const todo = useSelector((state: RootState) =>
+    id
+      ? state.todo.find((todo: Todo) => todo.id === parseInt(id, 10))
+      : undefined
+  );
+
+  if (!todo) {
+    return <div>Todo not found</div>;
+  }
 
   return (
     <div>
-      <h1>Detail Page</h1>
-      <p>{id}</p>
+      <h1>{todo.text}</h1>
+      <p>ID: {todo.id}</p>
     </div>
   );
 };

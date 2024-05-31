@@ -3,7 +3,6 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 export interface Todo {
   id: number;
   text: string;
-  completed: boolean;
 }
 
 const initialState: Todo[] = [];
@@ -16,7 +15,6 @@ const todoSlice = createSlice({
       const newTodo = {
         id: Date.now(),
         text: action.payload.text,
-        completed: false,
       };
       state.unshift(newTodo); // 새로운 todo를 배열의 맨 앞에 추가
     },
