@@ -20,6 +20,10 @@ const Detail: React.FC = () => {
     <div>
       <h1>{todo.text}</h1>
       <p>ID: {todo.id}</p>
+      <p>
+        New Pj Vue 회사에서 새로우 프로젝트 때문에 공부를 권유하여 배우려고
+        한다.
+      </p>
     </div>
   );
 };
