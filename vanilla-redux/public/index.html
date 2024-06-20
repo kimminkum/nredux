@@ -11,7 +11,7 @@
     />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    
+
     <title>Vanilla Redux</title>
     <style>
       .box {
@@ -27,7 +27,7 @@
         margin: 0 auto;
         text-align: center;
       }
-      
+
       button {
         display: block;
         position: relative;
@@ -37,10 +37,10 @@
         border: none;
         border-radius: 6px;
         transition: all 0.2s;
-        background: #FFAA40;
+        background: #ffaa40;
       }
       button:hover {
-        background: #01939A;
+        background: #01939a;
       }
       form button {
         display: inline-block;
@@ -66,13 +66,22 @@
         background-color: #40e2ff;
         border-radius: 50%;
         top: 50%;
-        left:0;
+        left: 0;
         transform: translateY(-50%);
       }
       .btn {
         margin-right: 8px;
         margin-left: 12px;
         height: 18px;
+      }
+      .typing_box {
+        width: 40%;
+        margin: 40px auto;
+        border: 1px solid #aaa;
+        text-align: center;
+      }
+      #reading {
+        font-size: calc((32 / 1920) * 100vw);
       }
     </style>
   </head>
@@ -83,18 +92,19 @@
       <button id="minus">Minus</button>
     </div>
 
+    <div class="typing_box">
+      <p id="reading"></p>
+    </div>
+
     <div class="box2">
       <h1>To Dos</h1>
       <form action="">
-        <input type="text" name="" id="" placeholder="Write to do">
+        <input type="text" name="" id="" placeholder="Write to do" />
         <button>Add</button>
-        <ul>
-
-        </ul>
+        <ul></ul>
       </form>
     </div>
-    
-    
+
     <script src="../src/index.js"></script>
   </body>
 </html>

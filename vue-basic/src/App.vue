@@ -1,41 +1,71 @@
 <template>
-  <div>{{ rawHtml }}</div>
-  <!-- <div>{{ rawHtml2 }}</div> -->
-  <div>{{ rawHtml3 }}</div>
-  <h1 v-html="rawHtml3"></h1>
-
-  <h2 v-bind:class="{ active: isActive }">Hello Worlds!</h2>
-  <h2 :class="{ active: isActive }">Hello Worlds!</h2>
-  <button @click="change">버튼</button>
-
-  <h3 style="color: orange; font-size: 24px">스타일 바인딩 테스트 입니다.</h3>
-  <h3 :style="{ color: fontColor, fontSize: fontSize + 'px' }">
-    스타일 바인딩 테스트 입니다.
-  </h3>
+  <div>
+    <div v-if="isVisible" class="red box"></div>
+    <div v-if="!isVisible" class="blue box"></div>
+    <div v-if="isVisible === true" class="green box"></div>
+    <div v-else class="black box"></div>
+    <div class="">
+      <li v-for="(item, index) in sampleArray" :key="item">
+        {{ item }} / {{ index }}
+      </li>
+    </div>
+    <div>
+      <li
+        v-for="(user, index) in otherArray"
+        :key="user.name"
+        @click="openDialog(index, user)"
+      >
+        {{ user.name }} / {{ user.id }} / {{ index }}
+      </li>
+    </div>
+  </div>
 </template>
 
 <script>
 export default {
   data() {
     return {
-      rawHtml: "이것은 우리의 죽음에 관한 이야기다.",
-      // rawHtml2: <span style="color:red">이렇게 쓰면 어떻게 되나</span>, 이건 안됨
-      rawHtml3: '<span style="color:red">이렇게 쓰면 어떻게 되나</span>',
-      isActive: false,
-      fontSize: 48,
-      fontColor: "orange",
+      isVisible: true,
+      sampleArray: ["a", "b", "c", "d", "e", "f"],
+      otherArray: [
+        { id: 0, name: "john" },
+        { id: 1, name: "doe" },
+        { id: 2, name: "hit" },
+      ],
     };
   },
   methods: {
-    change() {
-      this.isActive = !this.isActive;
+    openDialog: function (index, user) {
+      console.log(index);
+      console.log(user.id);
+      console.log(user.name);
     },
   },
 };
 </script>
 
 <style scoped>
-h2.active {
-  color: green;
+.box {
+  width: 100px;
+  height: 100px;
+}
+.red {
+  background-color: red;
+}
+.blue {
+  background-color: blue;
+}
+.green {
+  background-color: green;
+}
+.black {
+  background-color: black;
+}
+.flex {
+  display: flex;
+  justify-content: space-between;
+}
+li {
+  list-style: none;
 }
 </style>
