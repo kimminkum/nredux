@@ -1,28 +1,25 @@
 <template>
-  <button @click="changeMessage">{{ message }}</button>
-  {{ watchMessage }}
+  <div>
+    <ChildComponent
+      :sendProps1="title"
+      :sendProps2="createAt"
+      :sendProps3="obj"
+    />
+  </div>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      message: "Hello, vue watch",
-      watchMessage: "",
-    };
-  },
-  watch: {
-    message() {
-      // window.alert("message변수에 담긴 데이터가 변경되었습니다. warning");
-      this.watchMessage = "Watch 동작";
-    },
-  },
-  methods: {
-    changeMessage() {
-      this.message = "change";
-    },
-  },
-};
+<script setup lang="ts">
+import { ref, reactive } from "vue";
+import ChildComponent from "./components/ChildComponent.vue";
+
+interface Obj {
+  id: numver;
+  name: string;
+}
+
+const title = ref<string>("부모 컴포넌트에서 선언된 데이터입니다.");
+const createAt = ref<number>(2024);
+const obj = reactive<Obj>({ id: 2024, name: "john smith" });
 </script>
 
 <style lang="scss" scoped></style>
