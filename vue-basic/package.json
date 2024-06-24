@@ -9,10 +9,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "vue": "^3.4.21"
+    "vue": "^3.4.21",
+    "vue-awesome-swiper": "^5.0.1"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.4",
+    "sass": "^1.77.6",
     "vite": "^5.2.0"
   }
 }
