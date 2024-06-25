@@ -1,24 +1,20 @@
 <template>
-  <div>{{ sendProps1 }}</div>
-  <div>{{ sendProps2 }}</div>
-  <div>{{ sendProps3.id }}</div>
-  <div>{{ sendProps3.name }}</div>
+  <button @click="sendEvent">자식컴포넌트에서 만든 버튼.</button>
 </template>
 
-<script setup lang="ts">
-import { toRefs } from "vue";
-interface Obj {
-  id: numver;
-  name: string;
-}
-interface Props {
-  sendProps1: string;
-  sendProps2: number;
-  sendProps3: Obj;
-}
-
-const props = defineProps<Props>();
-const { sendProps1, sendProps2, sendProps3 } = toRefs(props);
+<script>
+export default {
+  data() {
+    return {
+      text: "자식컴포넌트에서 선언된 데이터입니다.",
+    };
+  },
+  methods: {
+    sendEvent() {
+      this.$emit("send-event", this.text);
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped></style>
