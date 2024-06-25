@@ -1,23 +1,19 @@
 <template>
   <div>
-    부모컴포넌트 레이아웃
-    <ChildComponent @send-event="parentEvent" />
+    <input type="text" v-model="inputValue1" />
+    <input type="text" :value="inputValue2" @input="inputValue2" />
   </div>
+  <div>{{ inputValue1 }}</div>
+  <div>{{ inputValue2 }}</div>
 </template>
 
 <script>
-import ChildComponent from "./components/ChildComponent.vue";
-
-const baba = "";
-
 export default {
-  components: {
-    ChildComponent,
-  },
-  methods: {
-    parentEvent(e) {
-      console.log(e);
-    },
+  data() {
+    return {
+      inputValue1: "",
+      inputValue2: "",
+    };
   },
 };
 </script>
