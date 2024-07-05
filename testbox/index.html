@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        outline: 1px solid red;
+        padding: 0;
+        margin: 0;
+      }
+
+      h5 {
+        margin: 20px 0;
+        line-height: 1.2;
+      }
+
+      .flex {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+      }
+      .mainbox {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .imgbox {
+        width: 80%;
+        height: 200px;
+        margin: 0 auto;
+        background-color: #e1e1e1;
+      }
+
+      .mainbox {
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* .title과 .middle을 포함하는 직접적인 부모 요소가 Flex 아이템이 되도록 설정 */
+      .mainbox > div {
+        display: flex;
+        flex-direction: column;
+      }
+      .textbox {
+          width: 80%;
+          margin: 0 auto;
+          color: #000;
+          display: flex;
+          height: auto;
+          justify-content: space-between;
+          flex-direction: column;
+          align-items: flex-start; /* Add this line */
+        }
+        .textbox .title {
+          flex: 1;
+          display: flex;
+          align-items: center;
+          height: 100%; /* Add this line */
+        }
+
+        .textbox .middle {
+          flex: 1;
+          display: flex;
+          align-items: center;
+          height: 100%; /* Add this line */
+        }
+    </style>
+  </head>
+
+  <body>
+    <div class="flex">
+      <div class="mainbox">
+        <div class="imgbox"></div>
+        <div class="textbox">
+          <h5 class="title">qw<br />3</h5>
+          <div class="middle">1</div>
+          <p>66</p>
+        </div>
+      </div>
+      <div class="mainbox">
+        <div class="imgbox"></div>
+        <div class="textbox">
+          <h5 class="title">qw</h5>
+          <div class="middle">2<br />3<br />4</div>
+          <p>66</p>
+        </div>
+      </div>
+      <div class="mainbox">
+        <div class="imgbox"></div>
+        <div class="textbox"></div>
+          <h5 class="title">qw</h5>
+          <div class="middle">3b3<br />4</div>
+          <p>66</p>
+        </div>
+      </div>
+      <div class="mainbox">
+        <div class="imgbox"></div>
+        <div class="textbox">
+          <h5 class="title">qw</h5>
+          <div class="middle">4</div>
+          <p>66<br />3</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
